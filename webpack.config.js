@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/app.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -29,6 +29,21 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/
       },
+      {   test: /\.css$/, 
+          // exclude: /node_modules/,
+          loader: 'style-loader!css-loader?sourceMap' 
+      },
+      { 
+          test: /\.(woff|svg|eot|ttf)\??.*$/,
+          // exclude: /node_modules/,
+          loader: 'url-loader?limit=50000&name=[path][name].[ext]'
+      },
+      {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          loader: 'raw-loader!sass-loader'
+          // loader: ExtractTextPlugin.extract("style", 'css!sass') //这里用了样式分离出来的插件，如果不想分离出来，可以直接这样写 loader:'style!css!sass'
+      },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
@@ -40,7 +55,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      'jquery': path.resolve(__dirname, 'node_modules/jquery/src/jquery.js')
     }
   },
   devServer: {

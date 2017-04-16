@@ -1,0 +1,73 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+em{
+	font-style: normal;
+}
+input{
+	outline:none;
+}
+a{
+	text-decoration: none;
+}
+
+/*清浮动*/
+.clear:after {
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clear {
+    zoom: 1;
+}
+
+/*头部通用css*/
+.lgy_commonTop{
+	width: 100%;
+	height: 3rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background:#4fada7;
+}
+.lgy_logincss{
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	float: left;
+	color:#fff;
+}
+.lgy_logincss:nth-child(1){
+	margin-left: 0.8rem;
+}
+.lgy_logincss:nth-child(2){
+	float: right;
+}
+.lgy_logincss:nth-child(3){
+	float: right;
+}
+
+/*底部通用css*/
+
+/*锚链接样式 */
+.runtoTop{
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 4rem; 
+    right: -2rem;
+    z-index: 99;
+    margin-right: 3rem;
+    /*overflow: hidden;*/
+    background-image: url('../../img/upTop.jpg');
+    /*display: none;*/
+    background-position: 0rem 0rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+/*.runtoTop > img{
+    width: 1.5rem;
+    height: 3.55rem;
+    font-size: 3rem;
+}*/
