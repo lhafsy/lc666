@@ -15,17 +15,17 @@ body{width: 100%;display: block;margin:0;padding: 0;height: 100%;}
 
 #Tl_main_content{width: 100%;margin-top: 50px;margin-bottom: 50px;}
 .Tl_nav div,.Tl_nav2 div,.Tl_nav3 div,.Tl_nav4 div,.Tl_nav5 div{width: 100%;height: 18.8rem;}
-.Tl_nav div{background-image: url(../../img/26748.jpg);background-size: cover;}
-.Tl_nav2 div{background-image: url(../../img/26736.jpg);background-size: cover;}
-.Tl_nav3 div{background-image: url(../../img/26711.jpg);background-size: cover;}
-.Tl_nav4 div{background-image: url(../../img/26713.jpg);background-size: cover;}
-.Tl_nav5 div{background-image: url(../../img/26715.jpg);background-size: cover;}
-#Tl_Combination_top{width: 50%;height: 20rem;background-image: url(../../img/26708.jpg);background-size: cover;float: left;}
-#Tl_Combination_Top{width: 50%;height: 15rem;background-image: url(../../img/26710.jpg);background-size: cover;float: left;}
-#Tl_Combination_bottom{width: 50%;height: 15rem;background-image: url(../../img/26712.jpg);background-size: cover;float: left;}
-#Tl_Combination_Bottom{width: 50%;height: 20rem;background-image: url(../../img/26709.jpg);background-size: cover;float: left;margin-top: -5rem;}
-#Tl_Combination_left{width: 50%;height: 15rem;background-image: url(../../img/26716.jpg);background-size: cover;float: left;}
-#Tl_Combination_right{width: 50%;height: 15rem;background-image: url(../../img/26717.jpg);background-size: cover;float: left;}
+.Tl_nav div{background-image: url(../../../img/26748.jpg);background-size: cover;}
+.Tl_nav2 div{background-image: url(../../../img/26736.jpg);background-size: cover;}
+.Tl_nav3 div{background-image: url(../../../img/26711.jpg);background-size: cover;}
+.Tl_nav4 div{background-image: url(../../../img/26713.jpg);background-size: cover;}
+.Tl_nav5 div{background-image: url(../../../img/26715.jpg);background-size: cover;}
+#Tl_Combination_top{width: 50%;height: 20rem;background-image: url(../../../img/26708.jpg);background-size: cover;float: left;}
+#Tl_Combination_Top{width: 50%;height: 15rem;background-image: url(../../../img/26710.jpg);background-size: cover;float: left;}
+#Tl_Combination_bottom{width: 50%;height: 15rem;background-image: url(../../../img/26712.jpg);background-size: cover;float: left;}
+#Tl_Combination_Bottom{width: 50%;height: 20rem;background-image: url(../../../img/26709.jpg);background-size: cover;float: left;margin-top: -5rem;}
+#Tl_Combination_left{width: 50%;height: 15rem;background-image: url(../../../img/26716.jpg);background-size: cover;float: left;}
+#Tl_Combination_right{width: 50%;height: 15rem;background-image: url(../../../img/26717.jpg);background-size: cover;float: left;}
 
 #Tl_bottom{position: fixed;bottom: 0;z-index: 999;width: 100%;height: 50px;}
 #Tl_bottom a img{margin-top: 1rem;}

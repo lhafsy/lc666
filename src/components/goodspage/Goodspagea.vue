@@ -6,27 +6,14 @@
 			<router-link to="/register" class="lgy_logincss">注册</router-link>
 			<router-link to="/login" class="lgy_logincss">登录</router-link>
 		</div>
-		<!-- <table class="table">
-	      <thead>
-	        <tr>
-	          <th>#</th>
-	          <th v-for="(key,value) in datapage[0]">{{value}}</th>
-	        </tr>
-	      </thead>
-	      <tbody>
-	        <tr v-for="(item, index) in datapage" key={{index}}>
-	          <td>{{index + 1}}</td>
-	          <td v-for="(value, key) in item">{{value}}</td>
-	        </tr>
-	      </tbody>
-	    </table> -->
 		<div class="lgy_pagesDiva">
-			<img src="../../img/goodspagea1.jpg" alt="">
-			<h2 class="lgy_goodsTitle">{{datapage[0].contents}}</h2>
+			<img :src="'../../../img/'+datapage[0].img" ref="cartimg"/>
+			<!-- <img src="../../img/goodspagea1.jpg" alt=""> -->
+			<h2 class="lgy_goodsTitle" ref="cartmsg">{{datapage[0].contents}}</h2>
 			<em>作者 ：时间飞逝</em>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img src="../../img/goodspagea2.jpg" alt="">
+			<img src="../../../img/goodspagea2.jpg" alt="">
 			<strong>【 雪平锅 】</strong>
 			<p></p><br>
 			<strong>铝制锅身经工匠锻打</strong>
@@ -34,11 +21,11 @@
 			<strong>有白雪般的图案</strong>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img src="../../img/goodspagea3.jpg" alt="">
+			<img src="../../../img/goodspagea3.jpg" alt="">
 			<p>▲《小森林》里，女主用雪平锅做番茄罐头，炖汤，出镜率特别高。</p>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img src="../../img/goodspagea4.jpg" alt="">
+			<img src="../../../img/goodspagea4.jpg" alt="">
 			<p>▲ 《深夜食堂》《海鸥食堂》等日剧的食物造型师，饭岛奈美曾公开她工作室的人气炊具，其中就有这只锅。</p>
 			<p>如果厨房只能留一个锅，</p>
 			<p>你会选什么？</p>
@@ -48,7 +35,7 @@
 			<p>因此深受日本家庭欢迎。</p>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img src="../../img/goodspagea5.jpg" alt="">
+			<img src="../../../img/goodspagea5.jpg" alt="">
 			<p>“ 从煮物到甜品，</p>
 			<p>从一人晚餐到全家三餐，</p>
 			<p>全部都可以一锅上菜 ”</p>
@@ -67,7 +54,7 @@
 			<p>雪平锅也是釜浅商店推荐的日常料理的良器之一。</p>
 			<p>“味之素”雪平锅</p>
 			<p>
-				<img src="../../img/goodspagea6.jpg" alt="">
+				<img src="../../../img/goodspagea6.jpg" alt="">
 			</p>
 			<p>1930年北陆诞生于日本铸物之城高冈地区，</p>
 			<p>90多年前，创始人荒井三郎，</p>
@@ -95,10 +82,13 @@
 				<strong>把手：天然木</strong>
 				<strong>产地：日本</strong>
 				<strong>适用热源：直火专用</strong>
+				<p style="text-align:left;padding-left:2rem;">
+					价格：<em ref="cartprice">156</em>元
+				</p>
 				<div class="lgy_shopNum clear">
 					数量：
 					<input class="lgy_shopDown" type="button" value="-" @click="getAttribute" lgy_Nums="1">
-					<span class="lgy_Num">{{lgy_Nums}}</span>
+					<span class="lgy_Num" ref="cartnum">{{lgy_Nums}}</span>
 					<input class="lgy_shopUp" type="button" value="+" @click="lgy_Nums ++">
 				</div>
 				<span class="lgy_shopSong">
@@ -106,8 +96,8 @@
 					<strong>&nbsp;&nbsp;&nbsp;&nbsp;(赠送30ml洗涤果蔬洗涤液)</strong>
 				</span>
 				<div class="lgy_goodsBuy">
-					<div class="lgy_addCart">加入购物车</div>
-					<div class="lgy_addBuy">立即购买</div>
+					<div class="lgy_addCart" @click="getUid">加入购物车</div>
+					<div class="lgy_addBuy" @click="lgy_postuid">立即购买</div>
 				</div>
 			</div>
 		</div>
@@ -123,17 +113,23 @@
 	import resource from './../../../node_modules/vue-resource/dist/vue-resource.js'
 	import $ from 'jquery'
 	import http from '../../utils/HttpClient'
+	// import '../common/common.css'
 	export default {
 		name: 'goodspagea',
 		data: function(){
-			return {datapage:[],lgy_Nums:"1",id:"2"
-		}
+			return {datapage:[],datagoodid:[],lgy_Nums:"1",id:"2",back:"22iii"}
 		},
 		created: function(){
-				// console.log( this.$route.query.id)
-				var self = this;
 				$.get('http://localhost/LC/lc666/reg.php',function(response){
-					this.datapage = JSON.parse(response)
+					this.datapage = JSON.parse(response);
+					// var responeseObj = JSON.parse(response);
+						console.log(this.datapage[0].cartid)
+			    	for(var i = 0; i < this.datapage.length; i++){
+						// // responeseObj
+						this.datagoodid.push(this.datapage[i].cartid)
+			    	}
+	        		console.log(this.datagoodid)
+
 			    }.bind(this))
 		},
 		ready: function(){
@@ -153,16 +149,43 @@
 			created: function(){
 				// console.log( this.$route.query.id)
 				var self = this;
-				$.get('http://localhost/LC/lc666/reg.php',function(response){
+				$.get('http://localhost/LC/lc666/cart.php',function(response){
 					this.datapage = JSON.parse(response)
 			      // var dataObj = JSON.parse(response);
-			      console.log(this.datapage)
+			      // console.log(this.datapage)
 			      // this.datapage.push(data)
 			    }.bind(this))
 			},
 			ready: function(){
 		        console.log(this.$route.params.id);
+		    },
+		    goAnchor(selector) {
+		        var anchor = this.$el.querySelector(selector)
+		        document.body.scrollTop = anchor.offsetTop
+		    },
+		    lgy_addCart: function(){
+		    	// console.log(666)
+		    },
+		    lgy_postuid: function(){
+		    	var cartid = this.$route.params.id;
+		    	var cartmsg = this.$refs.cartmsg.innerText;
+		    	var cartnum = this.$refs.cartnum.innerText;
+		    	var cartprice = this.$refs.cartimg.cartprice;
+		    	var cartimg = this.$refs.cartimg.src;
+		    	console.log(cartid)
+		    	$.post("http://localhost/LC/lc666/addcart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
+			  				}.bind(this));
+		    },
+		    getUid:function(_callback){
+		    	var url1 = this.$route.params.id
+		    	var url = url1.substring(0)
+		    	// console.log(url)
+		        var gid = url;
+		        console.log(gid)
+		        // debugger
+		        return gid
 		    }
+
 		}
 	}
 </script>
@@ -208,7 +231,6 @@
 		float: left;
 		margin: 3rem;
 	}
-	/*清浮动*/
 	.clear:after {
 	    display: block;
 	    height: 0;
@@ -217,11 +239,42 @@
 	.clear {
 	    zoom: 1;
 	}
-	
-
-
-
-
+	.lgy_commonTop{
+		width: 100%;
+		height: 3rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background:#4fada7;
+	}
+	.lgy_logincss{
+		width: 3rem;
+		height: 3rem;
+		line-height: 3rem;
+		float: left;
+		color:#fff;
+	}
+	.lgy_logincss:nth-child(1){
+		margin-left: 0.8rem;
+	}
+	.lgy_logincss:nth-child(2){
+		float: right;
+	}
+	.lgy_logincss:nth-child(3){
+		float: right;
+	}
+	.runtoTop{
+	    width: 4rem;
+	    height: 5.3rem;
+	    position: fixed;
+	    bottom: 4rem; 
+	    right: -2rem;
+	    z-index: 99;
+	    margin-right: 3rem;
+	    background-image: url('../../../img/runTop.png');
+	    background-position: 0rem 0rem;
+	    background-repeat: no-repeat;
+	}
 	.lgy_pagesOut{
 		width: 100%;
 		padding: 1rem;
@@ -250,26 +303,26 @@
 				text-align: center;
 			}
 		}
-		.lgy_pagesDiva:nth-child(2){
-			height: 36rem;
-		}
 		.lgy_pagesDiva:nth-child(3){
-			height: 36rem;
+			height: 38rem;
 		}
 		.lgy_pagesDiva:nth-child(4){
-			height: 20.5rem;
+			height: 40rem;
 		}
 		.lgy_pagesDiva:nth-child(5){
-			height: 43rem;
+			height: 22rem;
 		}
 		.lgy_pagesDiva:nth-child(6){
+			height: 46rem;
+		}
+		.lgy_pagesDiva:nth-child(7){
 			height: 100%;
 			.lgy_pgif{
 				width: 100%;
 				height: 25.5rem;
 				overflow:hidden;
 				width: 100%;
-				background-image: url('../../img/goodsbottom.gif');
+				background-image: url('../../../img/goodsbottom.gif');
 				background-size: 99%;
 				background-position: 0rem -10rem;
 			}

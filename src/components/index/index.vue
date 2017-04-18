@@ -50,6 +50,27 @@
 				<p style="font-weight:600;font-family:'微软雅黑';">- 热卖周报 -</p>
 			</div>
 			<div class="clear">
+				<div v-for="(key, index) in data" v-if="index < 6" style="background-color:rgb(241,241,241);float:left;margin-left:2.2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
+					<router-link :to="'/page/' + key.index_id">
+						<img :src="'../../../img/'+key.img" alt="" style="width:100%;height:60%;">
+						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">{{key.contents}}</div>
+						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">{{key.price}}</div>
+					</router-link>
+				</div>
+				<!-- <div style="background-color:rgb(241,241,241);float:left;margin-left:2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
+					<a href="#">
+						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
+						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
+						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
+					</a>
+				</div>
+				<div style="background-color:rgb(241,241,241);float:left;margin-left:2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
+					<a href="#">
+						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
+						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
+						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
+					</a>
+				</div>
 				<div style="background-color:rgb(241,241,241);float:left;margin-left:1%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
 					<a href="#">
 						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
@@ -70,51 +91,30 @@
 						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
 						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
 					</a>
-				</div>
-				<div style="background-color:rgb(241,241,241);float:left;margin-left:1%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
-					<a href="#">
-						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
-						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
-						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
-					</a>
-				</div>
-				<div style="background-color:rgb(241,241,241);float:left;margin-left:2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
-					<a href="#">
-						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
-						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
-						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
-					</a>
-				</div>
-				<div style="background-color:rgb(241,241,241);float:left;margin-left:2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
-					<a href="#">
-						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
-						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
-						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
-					</a>
-				</div>
+				</div> -->
 			</div>
 			<div style="width:100%;height:15rem;margin-top:2rem;">
 				<a href="#">
-					<img src="../../img/bxp.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
+					<img src="../../../img/bxp.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
 				</a>
 				<a href="#">
-					<img src="../../img/brm.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
+					<img src="../../../img/brm.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
 				</a>
 				<a href="#">
-					<img src="../../img/bzk.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
+					<img src="../../../img/bzk.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
 				</a>
 				<a href="#">
-					<img src="../../img/bms.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
+					<img src="../../../img/bms.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
 				</a>
 				<a href="#">
-					<img src="../../img/bzt.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
+					<img src="../../../img/bzt.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
 				</a>
 				<a href="#">
-					<img src="../../img/bgd.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
+					<img src="../../../img/bgd.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
 				</a>
 			</div>
 			<div style="text-align:center;">
-				<img src="../../img/kfdh.png" alt="" style="width:95%;">
+				<img src="../../../img/kfdh.png" alt="" style="width:95%;">
 			</div>
 			<div style="text-align:center;">
 				<p style="font-size:17px;margin:0;">400－897－6336</p>
@@ -122,19 +122,19 @@
 			</div>
 		</div>
 		<div id="Tl_bottom">
-			<a href="#">
-				<img src="../../img/fsy.png" alt="" style="width:20px;height:30px;margin-left:13.5%;">
-			</a>
-			<a href="#/LhaGoodspagea">
-				<img src="../../img/ffl.png" alt="" style="width:22px;height:30px;margin-left:13.5%;">
-			</a>
-			<a href="#/login">
-				<img src="../../img/fgwc.png" alt="" style="width:35px;height:30px;margin-left:13.5%;">
-			</a>
-			<a href="#">
-				<router-link to="/login"><img src="../../img/fdd.png" alt="" style="width:40px;height:30px;margin-left:11.5%;"></router-link>
+			<router-link to="/">
+				<img src="../../../img/fsy.png" alt="" style="width:20px;height:30px;margin-left:13.5%;">
+			</router-link>
+			<router-link to="/LhaGoodspagea">
+				<img src="../../../img/ffl.png" alt="" style="width:22px;height:30px;margin-left:13.5%;">
+			</router-link>
+			<router-link to="/login">
+				<img src="../../../img/fgwc.png" alt="" style="width:35px;height:30px;margin-left:13.5%;">
+			</router-link>
+			<router-link to="">
+				<router-link to="/login"><img src="../../../img/fdd.png" alt="" style="width:40px;height:30px;margin-left:11.5%;"></router-link>
 				
-			</a>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -174,6 +174,14 @@ $Spancolor : black;
 	import $ from 'jquery'
 	import './index.css'
 	export default {
-		name: 'index'
+		name: 'index',
+		data: function(){
+			return {data: [],data2: []}
+		},
+		created: function(){
+			$.get('http://localhost/LC/lc666/reg.php', function(response){
+				this.data = JSON.parse(response);
+			}.bind(this))
+		}
 	}
 </script>

@@ -60,7 +60,7 @@ a{
     z-index: 99;
     margin-right: 3rem;
     /*overflow: hidden;*/
-    background-image: url('../../img/upTop.jpg');
+    background-image: url('../img/upTop.jpg');
     /*display: none;*/
     background-position: 0rem 0rem;
     background-size: 100%;

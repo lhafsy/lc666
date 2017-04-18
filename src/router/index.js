@@ -8,6 +8,7 @@ import GoodsComponent from '../components/goodspage/Goodspagea.vue'
 import LoginComponent from '../components/login/LoginComponent.vue'
 import RegisterComponent from '../components/register/RegisterComponent.vue'
 import LhaGoodspagea from '../components/LhaGoodspagea/LhaGoodspagea.vue'
+import LhaGoodspageaa from '../components/LhaGoodspageaa/LhaGoodspageaa.vue'
 import index from '../components/index/index.vue'
 
 
@@ -35,30 +36,25 @@ const router = new VueRouter({
 		path: '/LhaGoodspagea',
 		name: 'LhaGoodspagea',
 		component: LhaGoodspagea
-	}]
+	},{
+		path: '/LhaGoodspageaa/:id',
+		name: 'LhaGoodspageaa',
+		component: LhaGoodspageaa
+	}],
+	// mode: 'history',
+ //  	scrollBehavior (to, from, savedPosition) {
+ //      // 如果你的連結是帶 # 這種
+ //      // to.hash 就會有值(值就是連結)
+ //      // 例如 #3
+ //      if (to.hash) {
+ //        return {
+ //          // 這個是透過 to.hash 的值來找到對應的元素
+ //          // 照你的 html 來看是不用多加處理這樣就可以了
+ //          // 例如你按下 #3 的連結，就會變成 querySelector('#3')，自然會找到 id = 3 的元素
+ //          selector: to.hash
+ //        }
+ //      }
+ //    }
 })
-
-
-//对将要进入的路由进行权判断
-// router.beforeEach((to, from, next) =>{
-// 	if(to.path != '/login'){
-// 		// http.get('./src/data/sesson.json')
-// 		// .then(response => {
-// 		// 	if(!response.login){
-// 		// 		router.replace('login');
-// 		// 	}
-// 		// 	next();
-// 		// })
-// 		http.get('http://localhost:888/getsession')
-// 		.then(response => {
-// 			if(!response.name){
-// 				router.replace('login');
-// 			} 
-// 			next()
-// 		});
-// 	} else {
-// 		next();
-// 	}
-// })
 
 export default router
