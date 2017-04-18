@@ -7,10 +7,6 @@
     $cartprice = $_POST["cartprice"];
     $cartimg = $_POST["cartimg"];
     // echo 1111;
-
-
-
-
     class Goods{
         public $cartid;
         public $cartnum;
@@ -29,7 +25,7 @@
 
     $sql = "select * from cart";
 
-    // $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('$cartid','$cartnum','$cartmsg','1','1')";
+    $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('99','$cartnum','$cartmsg','1','1')";
 
     $result = $conn->query($sql);//执行数据库命令返回数据
     if($result->num_rows > 0){//$result->num_rows == 返回的数据
@@ -44,9 +40,9 @@
 
            // echo $row["cartnum"];
             array_push($arr, $goods);
-            if($cartid != $row["cartid"]){
-                $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('100','$cartnum','$cartmsg','1','1')";
-            }
+            // if($cartid != $row["cartid"]){
+            //     $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('100','$cartnum','$cartmsg','1','1')";
+            // }
         }
 
         //返回json字符串

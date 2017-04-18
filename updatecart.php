@@ -1,13 +1,12 @@
 <?php
     header("Access-Control-Allow-Origin: http://localhost:8080");
     //定义需要获取数据库的数据
-    echo 6666;
+    // echo 6666;
     $cartid = $_POST["cartid"];
     $cartnum = $_POST["cartnum"];
     $cartmsg = $_POST["cartmsg"];
     $cartprice = $_POST["cartprice"];
-    $cartimg = $_POST["cartimg"];
-    ChromePhp::log('Hello console!'); 
+    $cartimg = $_POST["cartimg"]; 
     class Goods{
         public $cartid;
         public $cartnum;
@@ -24,8 +23,8 @@
     $conn->query("set names utf8"); //设置编码为utf8
 
     $sql = "select * from cart";
-
-    $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('23','$cartnum','$cartnum','cartprice','cartprice')";
+    $sql = "update cart set cartnum = '$cartnum' where cartid = '$cartid'";
+    // $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('168','$cartnum','$cartnum','1','1')";
 
     $result = $conn->query($sql);//执行数据库命令返回数据
     if($result->num_rows > 0){//$result->num_rows == 返回的数据

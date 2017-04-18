@@ -96,14 +96,14 @@
 					<strong>&nbsp;&nbsp;&nbsp;&nbsp;(赠送30ml洗涤果蔬洗涤液)</strong>
 				</span>
 				<div class="lgy_goodsBuy">
-					<div class="lgy_addCart" @click="getUid">加入购物车</div>
-					<div class="lgy_addBuy" @click="lgy_postuid">立即购买</div>
+					<div class="lgy_addCart" @click="lgy_updatephp">加入购物车</div>
+					<div class="lgy_addBuy" @click="lgy_postphp">立即购买</div>
 				</div>
 			</div>
 		</div>
-		<a href="#runTopa" class="runtoTop" id="runTop">
+		<!-- <a href="#runTopa" class="runtoTop" id="runTop"> -->
 	      <!-- <img src="../../img/upTop.jpg" alt=""> -->
-	    </a>
+	    <!-- </a> -->
 	</div>
 </template>
 
@@ -128,7 +128,7 @@
 						// // responeseObj
 						this.datagoodid.push(this.datapage[i].cartid)
 			    	}
-	        		console.log(this.datagoodid)
+	        		// console.log(this.datagoodid)
 
 			    }.bind(this))
 		},
@@ -166,14 +166,31 @@
 		    lgy_addCart: function(){
 		    	// console.log(666)
 		    },
-		    lgy_postuid: function(){
+		    lgy_postphp: function(){
 		    	var cartid = this.$route.params.id;
 		    	var cartmsg = this.$refs.cartmsg.innerText;
 		    	var cartnum = this.$refs.cartnum.innerText;
 		    	var cartprice = this.$refs.cartimg.cartprice;
 		    	var cartimg = this.$refs.cartimg.src;
-		    	console.log(cartid)
+		    	// console.log(cartid)
 		    	$.post("http://localhost/LC/lc666/addcart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
+			  				}.bind(this));
+		    },
+		    lgy_updatephp: function(){
+		    	var cartid = this.$route.params.id;
+		    	var cartmsg = this.$refs.cartmsg.innerText;
+		    	var cartnuminner = parseInt(this.$refs.cartnum.innerText);
+		    	var cartprice = this.$refs.cartimg.cartprice;
+		    	var cartimg = this.$refs.cartimg.src;
+		    	$.get('http://localhost/LC/lc666/cart.php',function(response){
+					// this.datapage = JSON.parse(response)
+			      var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
+			      var cartnum = cartnumget + cartnuminner;
+			      console.log(cartnum)
+		    		$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
+			      // this.datapage.push(data)
+			    }.bind(this))
+		    	// console.log(cartid)
 			  				}.bind(this));
 		    },
 		    getUid:function(_callback){
