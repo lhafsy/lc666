@@ -5,12 +5,7 @@
 
 body{width: 100%;height: 121.875rem}
 
-.lhatop{
-  width:100%;
-  height:5.0rem;
-  background-color: red;
-  text-align: left
-}
+
 .lhatop div {
   width: 3.125rem;
   line-height: 4.375rem;
@@ -42,9 +37,6 @@ body{width: 100%;height: 121.875rem}
 #topCenter{
  height: 4.375rem;
  line-height: 4.375rem;
- width: 6.25rem;
- text-align:center;
- margin-left:1.5625rem;
 }
 #topRight{
   float: right;
@@ -69,20 +61,17 @@ body{width: 100%;height: 121.875rem}
 }
 .coordinat > div{
   position: relative;
-
 }
 .coordinat > div> .lhaType{
   position: absolute;
+  font-size:1.5625rem;
   top: -2.6875rem;
   left: 1.5625rem;
+  font-weight: bold;
 }
 .coordinat div{
   width: 50%;
   box-sizing: border-box;
-  height: 11.5625rem;
-  background: url('../../../img/104999.jpg');
-  background-size: 100%;
+  height:8.25rem;
   float: left;
-  text-align: center;
-  line-height:11.5625rem;
 }

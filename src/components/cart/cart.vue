@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<div class="lgy_commonTop"><a href="#/" class="lgy_logincss router-link-active">主页</a> <a href="#/register" class="lgy_logincss">注册</a> <a href="#/login" class="lgy_logincss">登录</a></div>
-		<div class="lgy_cartOutshow" style="margin-top:3rem;margin-bottom:3.2rem">
+		<div class="lgy_commonTop" style="z-index:99"><a href="#/" class="lgy_logincss router-link-active">主页</a> <a href="#/register" class="lgy_logincss">注册</a> <a href="#/login" class="lgy_logincss">登录</a></div>
+		<div class="lgy_cartOutshow" style="margin-top:3rem;margin-bottom:6.5rem">
 			<div class="lgy_cartOut" v-for="(key, index) in cartData">
 				<div class="lgy_cartOuta">
-					<input type="checkbox" style="margin-left:1rem">
+					<input type="checkbox" style="margin-left:1rem" @click="eleChecked" v-bind:elecheckid="key.cartid" v-bind:index="index">
+					<span style="display:none">{{key.cartnum}}</span>
+					<span style="display:none">{{key.cartprice}}</span>
 				</div>
 				<div class="lgy_cartOuta">
 					<img :src="'../../../img/'+key.cartimg" alt="" style="width:100%;height:60%;">
@@ -13,7 +15,7 @@
 				<!-- <input type="text" ref="lgy_cartid" :value="key.cartid" style="display:none"/> -->
 
 
-				<span ref="lgy_cartid" style="display:none" v-bind:kid="key.cartid"></span>
+				<!-- <span ref="lgy_cartid" style="display:none" v-bind:cartid="key.cartid"></span> -->
 
 
 					<p>雪平锅</p>
@@ -21,17 +23,17 @@
 					<p>$ <em v-bind:eleprice="key.cartprice">{{key.cartprice}}</em>元</p>
 					<div class="lgy_shopNum clear">
 						数量：
-						<input class="lgy_shopDown" type="button" value="-" @click="getAttribute" lgy_Nums="1">
-						<span class="lgy_Num" ref="cartnum" v-bind:cartnum="key.cartnum">{{key.cartnum}}</span>
-						<input class="lgy_shopUp" type="button" value="+" @click="key.cartnum ++">
+						<input class="lgy_shopDown" type="button" value="-" @click="cartnumDown" v-bind:cartDownnum="key.cartnum" v-bind:cartDownid="key.cartid">
+						<span class="lgy_Num" ref="cartnum">{{key.cartnum}}</span>
+						<input class="lgy_shopUp" v-bind:cartUpnum="key.cartnum" type="button" value="+" v-bind:cartUpid="key.cartid" @click="cartnumUp">
 					</div>
 				</div>
 				<div class="lgy_cartOuta" @click="lgy_deletephp">
-					<img src="../../../img/delbtn.png" alt="" v-bind:kid="key.cartid">
+					<img src="../../../img/delbtn.png" alt="" v-bind:cartid="key.cartid">
 				</div>
 			</div>
 			<div class="allPricebox">
-				<input type="checkbox" class="allPricecheck">
+				<input type="checkbox" class="allPricecheck" @click="getChecked">
 				<span>总价格：<em class="allPrice">{{allMoneynum}}</em></span>
 				<input type="button" class="goBuy" value="结算">
 			</div>
@@ -57,50 +59,99 @@
 	export default {
 		name: 'cart',
 		data: function(){
-			return {cartData:[],allMoney:[],allMoneynum:""}
+			return {cartData:[],allMoney:[],allMoneynum:"0",elecartnum:"1"}
 		},
 		created: function(){
 				$.get('http://localhost/LC/lc666/cart.php',function(response){
-					// debugger
-						console.log(response.length)
-						// console.log(666)
-						console.log(typeof response)
-						// if(response == null){
-						// 	console.log(111)
-						// }
 					if(response.length > 12){
 						this.cartData = JSON.parse(response);
-						var sum = 0;
-						for(var i = 0;i < this.cartData.length; i++){
-							// this.allMoney.push(this.cartData[i].cartprice)
-							var cartprice = parseInt(this.cartData[i].cartprice)
-							var cartnum = parseInt(this.cartData[i].cartnum)
-							sum += (cartnum * cartprice);
-						}
-						this.allMoneynum = sum;
-						// console.log(this.allMoney)
 					}
 			    }.bind(this))
-			    // console.log(event.target.getAttribute('eleprice'))
 		},
 		methods:{
-			getAttribute: function(event){
-				console.log(event.target)
-				var lgy_Nums = parseInt(event.target.getAttribute('key.cartnum'));
-				if(lgy_Nums == 1){
+			cartnumUp: function(){
 
-				}else{
-					this.lgy_Nums = lgy_Nums - 1;
+			},
+			eleChecked: function(e) {
+				var num = e.path[2].children[2].children[2].children[0].innerText
+				var price = e.path[2].children[2].children[1].children[0].innerText
+				if(e.currentTarget.checked){
+					var numa =  num;
 				}
-				event.target.setAttribute('lgy_Nums', this.lgy_Nums);
+				console.log(e.path[2].children[2].children[2].children[0].innerText)
+				console.log(e.path[2].children[2].children[1].children[0].innerText)
+				console.log(e.currentTarget.checked)
+
+				// var num = $(':checked').parent().children('span').eq(0).html();
+				// var price = $(':checked').parent().children('span').eq(1).html();
+				// var box = num * price;
+				// console.log(typeof box)
+				// this.allMoneynum = parseInt(this.allMoneynum) + box;
+				// num = null;
+				// price = null;
+				// box = null;
+				// console.log($(':checked').parent().children('span').eq(0).html())
+				// console.log($(':checked').parent().children('span').eq(1).html())
+				// if()
+				// for(var i=0;i<$(':checked').length;i++){
+				// 	$(':checked')[i].
+				// }
+				var cartid = event.target.getAttribute('checkid');
+				var $checkbox = $('.lgy_cartOuta :checkbox');
+				// console.log($checkbox)
+
+				// console.log($checkbox.eq(1).prop('checked'))
+				var cleng = $checkbox.length;
+				var lenged = $('.lgy_cartOut :checked').length;
+
+				// if($checkbox.prop('checked')==true){
+				// 	$.get('http://localhost/LC/lc666/cart.php',function(response){
+				// 		if(response.length > 12){
+				// 			this.cartData = JSON.parse(response);
+				// 			var sum = 0;
+				// 			for(var i = 0;i < this.cartData.length; i++){
+				// 				// this.allMoney.push(this.cartData[i].cartprice)
+				// 				var cartprice = parseInt(this.cartData[i].cartprice)
+				// 				var cartnum = parseInt(this.cartData[i].cartnum)
+				// 				sum += (cartnum * cartprice);
+				// 			}
+				// 			this.allMoneynum = sum;
+				// 		}
+				//     }.bind(this))
+				// }else{
+				// 	this.allMoneynum = 0;
+				// }
+			},
+			getChecked: function() {
+				var $checkbox = $('.lgy_cartOut :checkbox');
+				var cleng = $checkbox.length;
+				var lenged = $('.lgy_cartOut :checked').length;
+				if(lenged == cleng){
+					$checkbox.prop('checked',false);
+				}else{
+					$checkbox.prop('checked',true);
+				}
+				if($checkbox.prop('checked')==true){
+					$.get('http://localhost/LC/lc666/cart.php',function(response){
+						if(response.length > 12){
+							this.cartData = JSON.parse(response);
+							var sum = 0;
+							for(var i = 0;i < this.cartData.length; i++){
+								// this.allMoney.push(this.cartData[i].cartprice)
+								var cartprice = parseInt(this.cartData[i].cartprice)
+								var cartnum = parseInt(this.cartData[i].cartnum)
+								sum += (cartnum * cartprice);
+							}
+							this.allMoneynum = sum;
+						}
+				    }.bind(this))
+				}else{
+					this.allMoneynum = 0;
+				}
 			},
 			lgy_deletephp: function(event){
-				var cartid = event.target.getAttribute('kid');
-				console.log(cartid)
-		    	// var cartid = this.$route.params.id;
-		    	// console.log(cartid)
+				var cartid = event.target.getAttribute('cartid');
 		    	$.post("http://localhost/LC/lc666/deletecart.php",{cartid:cartid},function(result){
-		    		console.log(cartid)
 		    		$.get('http://localhost/LC/lc666/cart.php',function(response){
 						if(response){
 							this.cartData = JSON.parse(response);
@@ -126,22 +177,53 @@
 		    	$.post("http://localhost/LC/lc666/addcart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
 			  				}.bind(this));
 		    },
-		    lgy_updatephp: function(){
-		    	var cartid = this.$route.params.id;
-		    	var cartmsg = this.$refs.cartmsg.innerText;
-		    	var cartnuminner = parseInt(this.$refs.cartnum.innerText);
-		    	var cartprice = this.$refs.cartimg.cartprice;
-		    	var cartimg = this.$refs.cartimg.src;
-		    	// $.get('http://localhost/LC/lc666/cart.php',function(response){
-					// this.datapage = JSON.parse(response)
-			      // var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
-			      // var cartnum = cartnumget + cartnuminner;
-			      // console.log(cartnum)
-		    		$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnuminner,cartprice:cartprice},function(result){
-			      // this.datapage.push(data)
-			    }.bind(this))
-		    	// console.log(cartid)
-			  				// }.bind(this));
+		    cartnumDown: function(){
+		    	// var cartid = this.$route.params.id;
+		    	// var cartmsg = this.$refs.cartmsg.innerText;
+		    	var cartid = parseInt(event.target.getAttribute('cartDownid'));
+		    	var cartnumbefore = parseInt(event.target.getAttribute('cartDownnum'));
+		    	if(cartnumbefore != "1"){
+		    		var cartnum = cartnumbefore - 1;
+		    		$.post("http://localhost/LC/lc666/updatecartbuy.php",{cartid:cartid,cartnum:cartnum},function(result){
+		    			$.get('http://localhost/LC/lc666/cart.php',function(response){
+		    				if(response){
+									this.cartData = JSON.parse(response);
+								// 	var sum = 0;
+								// for(var i = 0;i < this.cartData.length; i++){
+								// // this.allMoney.push(this.cartData[i].cartprice)
+								// 	var cartprice = parseInt(this.cartData[i].cartprice)
+								// 	var cartnum = parseInt(this.cartData[i].cartnum)
+								// 	sum += (cartnum * cartprice);
+								// }
+								// this.allMoneynum = sum;
+							}
+						}.bind(this));
+
+		    		}.bind(this));
+		    	}
+		    },
+		    cartnumUp: function(){
+		    	// var cartid = this.$route.params.id;
+		    	// var cartmsg = this.$refs.cartmsg.innerText;
+		    	var cartid = parseInt(event.target.getAttribute('cartUpid'));
+		    	var cartnumbefore = parseInt(event.target.getAttribute('cartUpnum'));
+	    		var cartnum = cartnumbefore + 1;
+	    		$.post("http://localhost/LC/lc666/updatecartbuy.php",{cartid:cartid,cartnum:cartnum},function(result){
+	    			$.get('http://localhost/LC/lc666/cart.php',function(response){
+	    				if(response){
+								this.cartData = JSON.parse(response);
+							// 	var sum = 0;
+							// for(var i = 0;i < this.cartData.length; i++){
+							// // this.allMoney.push(this.cartData[i].cartprice)
+							// 	var cartprice = parseInt(this.cartData[i].cartprice)
+							// 	var cartnum = parseInt(this.cartData[i].cartnum)
+							// 	sum += (cartnum * cartprice);
+							// }
+							// this.allMoneynum = sum;
+						}
+					}.bind(this));
+
+	    		}.bind(this));
 		    }
 		}
 	}
@@ -196,7 +278,7 @@
 	line-height: 3rem;
 	background:#fff;
 	position: fixed;
-	bottom:4.3rem;
+	bottom:4.25rem;
 	left: 0;
 	border-top:1px solid #ccc;
 	.allPricecheck{
