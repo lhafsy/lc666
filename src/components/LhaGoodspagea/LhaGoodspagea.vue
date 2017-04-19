@@ -27,7 +27,20 @@
       <div><router-link to="/LhaGoodspageaa/a" class="lhaType">礼物</router-link></div>
       <div><router-link to="/LhaGoodspageaa/a" class="lhaType">推荐</router-link></div>
     </div>
-
+  <div id="Tl_bottom">
+        <router-link to="/">
+          <img src="../../../img/fsy.png" alt="" style="width:20px;height:30px;margin-left:13.5%;">
+        </router-link>
+        <router-link to="/LhaGoodspagea">
+          <img src="../../../img/ffl.png" alt="" style="width:22px;height:30px;margin-left:13.5%;">
+        </router-link>
+        <router-link to="/cart">
+          <img src="../../../img/fgwc.png" alt="" style="width:35px;height:30px;margin-left:13.5%;">
+        </router-link>
+        <router-link to="">
+          <router-link to="/login"><img src="../../../img/fdd.png" alt="" style="width:40px;height:30px;margin-left:11.5%;"></router-link>
+        </router-link>
+      </div>
   </div>
 
 </template>
@@ -35,6 +48,7 @@
 <script type="text/javascript">
 
   import './LhaGoodspagea.css'
+  import './../index/index.css'
 
   export default {
     name: 'LhaGoodspagea'

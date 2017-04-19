@@ -9,6 +9,7 @@ class Goods{
     public $price;
     public $num;
     public $gtype;
+     public $goodspage;
 }
     $sql = $_POST["sql"];
       // echo json_encode($sql);
@@ -17,7 +18,7 @@ $conn = new mysqli("127.0.0.1","root","","shijianfeishi") or die("连接失败!"
 
     $conn->query("set names utf8"); //设置编码为utf8
 
-    $sql = "select * from goods where gtype='".$sql."'";
+    $sql = "select * from goods where index_id='".$sql."'";
     $result = $conn->query($sql);//执行数据库命令返回数据
     if($result->num_rows > 0){//$result->num_rows == 返回的数据
         $arr = array();
@@ -30,6 +31,7 @@ $conn = new mysqli("127.0.0.1","root","","shijianfeishi") or die("连接失败!"
             $goods->price = $row["price"];
             $goods->num = $row["num"];
             $goods->gtype = $row["gtype"];
+            $goods->goodspage = $row["goodspage"];
 
             array_push($arr, $goods);
         }
@@ -38,7 +40,7 @@ $conn = new mysqli("127.0.0.1","root","","shijianfeishi") or die("连接失败!"
         echo json_encode($arr);
     }
     else {
-        echo "" ;
+        echo "没有数据" ;
     }
 
     $conn->close();

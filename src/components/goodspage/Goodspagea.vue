@@ -7,9 +7,9 @@
 			<router-link to="/login" class="lgy_logincss">登录</router-link>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img :src="'../../../img/'+datapage[0].img" ref="cartimg"/>
+			<img src="../../../img/goodspagea2.jpg" ref="cartimg"/>
 			<!-- <img src="../../img/goodspagea1.jpg" alt=""> -->
-			<h2 class="lgy_goodsTitle" ref="cartmsg">{{datapage[0].contents}}</h2>
+			<h2 class="lgy_goodsTitle" ref="cartmsg"></h2>
 			<em>作者 ：时间飞逝</em>
 		</div>
 		<div class="lgy_pagesDiva">
@@ -72,9 +72,9 @@
 			<p>16cm的雪平锅容量为1.6L，</p>
 			<p>剛好烹煮一餐食，</p>
 			<p>不多不少刚刚好。</p>
-			<!-- <div class="lgy_pgif">
-				<img src="../../img/goodsbottom.gif" height="1160" width="540" alt="">
-			</div> -->
+			<!-- <div class="lgy_pgif"> -->
+				<!-- <img src="../../../img/goodsbottom.gif" height="1160" width="540" alt=""> -->
+			<!-- </div> -->
 			<div class="lgy_pageShop clear">
 				<strong>尺寸：16cm</strong>
 				<strong>本体：铝合金</strong>
@@ -97,7 +97,8 @@
 				</span>
 				<div class="lgy_goodsBuy">
 					<div class="lgy_addCart" @click="lgy_updatephp">加入购物车</div>
-					<div class="lgy_addBuy" @click="lgy_postphp">立即购买</div>
+					<div class="lgy_addBuy" @click="lgy_buyphp">立即购买</div>
+					<!-- <div class="lgy_addBuy" @click="lgy_deletephp">删除</div> -->
 				</div>
 			</div>
 		</div>
@@ -117,7 +118,7 @@
 	export default {
 		name: 'goodspagea',
 		data: function(){
-			return {datapage:[],datagoodid:[],lgy_Nums:"1",id:"2",back:"22iii"}
+			return {datapage:[],datagoodid:[],updatephpid:[],lgy_Nums:"1",id:"2",back:"22iii"}
 		},
 		created: function(){
 				$.get('http://localhost/LC/lc666/reg.php',function(response){
@@ -141,8 +142,7 @@
 				if(lgy_Nums == 1){
 
 				}else{
-
-				this.lgy_Nums = lgy_Nums - 1;
+					this.lgy_Nums = lgy_Nums - 1;
 				}
 				event.target.setAttribute('lgy_Nums', this.lgy_Nums);
 			},
@@ -163,10 +163,14 @@
 		        var anchor = this.$el.querySelector(selector)
 		        document.body.scrollTop = anchor.offsetTop
 		    },
-		    lgy_addCart: function(){
+		    lgy_deletephp: function(){
+		    	var cartid = this.$route.params.id;
+		    	console.log(cartid)
+		    	$.post("http://localhost/LC/lc666/deletecart.php",{cartid:cartid},function(result){
+			  				}.bind(this));
 		    	// console.log(666)
 		    },
-		    lgy_postphp: function(){
+		    lgy_buyphp: function(){
 		    	var cartid = this.$route.params.id;
 		    	var cartmsg = this.$refs.cartmsg.innerText;
 		    	var cartnum = this.$refs.cartnum.innerText;
@@ -182,16 +186,16 @@
 		    	var cartnuminner = parseInt(this.$refs.cartnum.innerText);
 		    	var cartprice = this.$refs.cartimg.cartprice;
 		    	var cartimg = this.$refs.cartimg.src;
-		    	$.get('http://localhost/LC/lc666/cart.php',function(response){
+		    	// $.get('http://localhost/LC/lc666/cart.php',function(response){
 					// this.datapage = JSON.parse(response)
-			      var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
-			      var cartnum = cartnumget + cartnuminner;
-			      console.log(cartnum)
-		    		$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
+			      // var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
+			      // var cartnum = cartnumget + cartnuminner;
+			      // console.log(cartnum)
+		    		$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnuminner,cartprice:cartprice},function(result){
 			      // this.datapage.push(data)
 			    }.bind(this))
 		    	// console.log(cartid)
-			  				}.bind(this));
+			  				// }.bind(this));
 		    },
 		    getUid:function(_callback){
 		    	var url1 = this.$route.params.id

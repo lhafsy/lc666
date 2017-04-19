@@ -49,7 +49,7 @@
         echo json_encode($arr);
     }
     else {
-        echo "没有商品";
+        echo "none";
     }
 
     $conn->close();

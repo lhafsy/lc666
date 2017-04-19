@@ -23,7 +23,6 @@
     $conn->query("set names utf8"); //设置编码为utf8
 
     $sql = "select * from cart";
-    $sql = "update cart set cartnum = '$cartnum' where cartid = '$cartid'";
     // $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('168','$cartnum','$cartnum','1','1')";
 
     $result = $conn->query($sql);//执行数据库命令返回数据
@@ -36,7 +35,16 @@
             $goods->cartmsg = $row["cartmsg"];
             $goods->cartprice = $row["cartprice"];
             $goods->cartimg = $row["cartimg"];
+            if($goods->cartid  == $cartid){
 
+                $cartnum = $cartnum + $goods->cartnum;
+                $sql= "update cart set cartnum = '$cartnum' where cartid = '$cartid'";
+                $conn->query($sql);         
+            }
+            if($goods->cartid  != $cartid){
+                $sql = "insert into cart (cartid,cartnum,cartmsg,cartprice,cartimg) values ('$cartid','$cartnum','$cartmsg','$cartprice','$cartimg')";
+                $conn->query($sql);         
+            }
     //        echo $row["goodsname"];
             array_push($arr, $goods);
         }
@@ -45,7 +53,7 @@
         echo json_encode($arr);
     }
     else {
-        echo "没有商品";
+        echo "";
     }
 
     $conn->close();

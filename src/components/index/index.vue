@@ -5,47 +5,47 @@
 			<button id="Tl_btn_search" style="font-size:12px;width:14%;height:1.8rem;">搜索</button>
 		</div>
 		<div id="Tl_main_content">
-			<a href="#" class="Tl_nav">
+			<router-link :to="'/page/' + data[0].index_id" class="Tl_nav">
 				<div></div>
-			</a>
-			<a href="#" class="Tl_nav2">
+			</router-link>
+			<router-link :to="'/page/' + data[1].index_id" class="Tl_nav2">
 				<div></div>
-			</a>
-			<a href="#" class="Tl_nav3">
+			</router-link>
+			<router-link :to="'/page/' + data[2].index_id" class="Tl_nav3">
 				<div></div>
-			</a>
+			</router-link>
 			<div style="width:100%;height:20rem;">
-				<a href="#">
+				<router-link :to="'/page/' + data[3].index_id">
 					<div id="Tl_Combination_top"></div>
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link :to="'/page/' + data[4].index_id">
 					<div id="Tl_Combination_Top"></div>
-				</a>
+				</router-link>
 			</div>
 			<div class="clear">
-				<a href="#">
+				<router-link :to="'/page/' + data[5].index_id">
 					<div id="Tl_Combination_bottom"></div>
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link :to="'/page/' + data[6].index_id">
 					<div id="Tl_Combination_Bottom"></div>
-				</a>
+				</router-link>
 			</div>
-			<a href="#" class="Tl_nav4">
+			<router-link :to="'/page/' + data[7].index_id" class="Tl_nav4">
 				<div></div>
-			</a>
+			</router-link>
 			<div style="width:100%;height:15rem;" class="clear">
-				<a href="#">
-					<router-link to="page/001">
+				<router-link :to="'/page/' + data[8].index_id">
+					<router-link :to="'/page/' + data[9].index_id">
 						<div id="Tl_Combination_left"></div>
 					</router-link>
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link :to="'/page/' + data[10].index_id">
 					<div id="Tl_Combination_right"></div>
-				</a>
+				</router-link>
 			</div>
-			<a href="#" class="Tl_nav5">
+			<router-link :to="'/page/' + data[11].index_id" class="Tl_nav5">
 				<div></div>
-			</a>
+			</router-link>
 			<div style="margin:2% 0;text-align:center;">
 				<p style="font-weight:600;font-family:'微软雅黑';">- 热卖周报 -</p>
 			</div>
@@ -58,7 +58,7 @@
 					</router-link>
 				</div>
 				<!-- <div style="background-color:rgb(241,241,241);float:left;margin-left:2%;margin-bottom:2%;width:30%;height:15rem;overflow:hidden;text-align:center;">
-					<a href="#">
+					<a href="#"router-link
 						<img src="../../img/256837.jpg" alt="" style="width:100%;height:60%;">
 						<div style="height:3rem;margin-left: 5%;font-size: 12px;width:90%;line-height:1.5;word-break:break-all;overflow : hidden;text-overflow: ellipsis;font-family:'微软雅黑';">细白焕采光面膜美容仪 | 30天再现瓷光肌【限时赠送护颜乳】</div>
 						<div style="text-align: center;font-size: 12px;line-height: 20px;margin-bottom: 18px;margin-top: 10px;">￥590.00</div>
@@ -94,24 +94,24 @@
 				</div> -->
 			</div>
 			<div style="width:100%;height:15rem;margin-top:2rem;">
-				<a href="#">
+				<router-link to="/LhaGoodspageaa/Stationery">
 					<img src="../../../img/bxp.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link to="/LhaGoodspageaa/funrniture">
 					<img src="../../../img/brm.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link to="/LhaGoodspageaa/HomeFurnishing">
 					<img src="../../../img/bzk.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link to="/LhaGoodspageaa/Digital">
 					<img src="../../../img/bms.png" alt="" style="width:30%;height:6rem;margin-left:1%;margin-bottom:2%;">
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link to="/LhaGoodspagea">
 					<img src="../../../img/bzt.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
-				</a>
-				<a href="#">
+				</router-link>
+				<router-link to="/LhaGoodspageaa/Stationery">
 					<img src="../../../img/bgd.png" alt="" style="width:30%;height:6rem;margin-left:2%;margin-bottom:2%;">
-				</a>
+				</router-link>
 			</div>
 			<div style="text-align:center;">
 				<img src="../../../img/kfdh.png" alt="" style="width:95%;">
@@ -128,12 +128,11 @@
 			<router-link to="/LhaGoodspagea">
 				<img src="../../../img/ffl.png" alt="" style="width:22px;height:30px;margin-left:13.5%;">
 			</router-link>
-			<router-link to="/login">
+			<router-link to="/cart">
 				<img src="../../../img/fgwc.png" alt="" style="width:35px;height:30px;margin-left:13.5%;">
 			</router-link>
 			<router-link to="">
 				<router-link to="/login"><img src="../../../img/fdd.png" alt="" style="width:40px;height:30px;margin-left:11.5%;"></router-link>
-				
 			</router-link>
 		</div>
 	</div>

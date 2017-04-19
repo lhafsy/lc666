@@ -10,6 +10,8 @@ import RegisterComponent from '../components/register/RegisterComponent.vue'
 import LhaGoodspagea from '../components/LhaGoodspagea/LhaGoodspagea.vue'
 import LhaGoodspageaa from '../components/LhaGoodspageaa/LhaGoodspageaa.vue'
 import index from '../components/index/index.vue'
+import cart from '../components/cart/cart.vue'
+import details from '../components/details/details.vue'
 
 
 Vue.use(VueRouter)
@@ -40,6 +42,14 @@ const router = new VueRouter({
 		path: '/LhaGoodspageaa/:id',
 		name: 'LhaGoodspageaa',
 		component: LhaGoodspageaa
+	},{
+		path: '/cart',
+		name: 'cart',
+		component: cart
+	},{
+		path: '/details/:id',
+		name: 'details',
+		component: details
 	}],
 	// mode: 'history',
  //  	scrollBehavior (to, from, savedPosition) {
