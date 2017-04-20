@@ -29,16 +29,7 @@
 
                   
                 }
-                // if($row["gid"] == $cartid ){
-                  
-                //    $sql5 = "UPDATE carts SET num='".$numMin."' where  gid = '".$cartid."'" ;
-                //    $conn->query( $sql5);
-
-                //    $isExist = true;
-
-                  
-                // }
-
+                
             }
         }else {
             // echo "没有用户数据";

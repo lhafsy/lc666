@@ -3,7 +3,7 @@
     <div class="lhatop" style="position:fixed">
       <div id="topImg"><router-link to="/" ><img src="../../../img/top.png" ></router-link></div>
       <div id="topLeft"><a><router-link to="/" >主页</router-link></a></div>
-      <div id="topRight"><a><router-link to="/login" >登录</router-link></a></div>
+      <!-- <div id="topRight"><a><router-link to="/login" >购物车</router-link></a></div> -->
     </div>
     <div class="coordinat" style="padding-top:3.2rem">
       <router-link to="/LhaGoodspageaa/HomeFurnishing" class="lhaType"><div style="background: url('../../../img/a1.png');background-size: 100%"> </div></router-link>

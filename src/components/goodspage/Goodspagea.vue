@@ -3,8 +3,8 @@
 		<div id="runTopa"></div>
 		<div class="lgy_commonTop">
 			<router-link to="/" class="lgy_logincss">主页</router-link>
-			<router-link to="/register" class="lgy_logincss">注册</router-link>
-			<router-link to="/login" class="lgy_logincss">登录</router-link>
+			<!-- <router-link to="/register" class="lgy_logincss">注册</router-link>
+			<router-link to="/login" class="lgy_logincss">登录</router-link> -->
 		</div>
 		<div class="lgy_pagesDiva">
 			<img :src="'../../../img/'+datapage.img" ref="cartimg"/>
@@ -213,7 +213,7 @@
 			   	success:function(response){
 			   	
 			   		console.log(response)
-			   		console.log(cartid)
+			   		// console.log(obj.num)
 			   		// for()
 			   	}
 

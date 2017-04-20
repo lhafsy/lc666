@@ -38,15 +38,7 @@
 
                   
                 };
-                // if($row["gid"] == $cartid ){
-                  
-                //    $sql5 = "UPDATE carts SET num='".$numMin."' where  gid = '".$cartid."'" ;
-                //    $conn->query( $sql5);
-
-                //    $isExist = true;
-
-                  
-                // }
+                
 
             }
         }else {
@@ -59,10 +51,11 @@
           
 
             //插入数据
-            $sql2 = "insert into carts (gid,uid,num) values( '".$cartid."','".$name."','".$num."')";
+            $sql2 = "insert into carts (gid,uid,num) values( '".$cartid."','".$name."','".$numAdd."')";
             if ($conn->query($sql2)) {
                
                 echo "success";
+                // echo $numAdd;
             } else {
                 echo "register fail";
             }

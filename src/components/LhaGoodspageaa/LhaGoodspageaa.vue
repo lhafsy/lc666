@@ -3,8 +3,8 @@
    <div class="lhatop">
     <div id="topImg"><router-link to="/"><img src="../../../img/top.png" ></router-link></div>
     <div id="topLeft"><router-link to="/">主页</router-link></div>
-    <div id="topCenter"><a style="margin-left:-25px">商品列表</a></div>
-    <div id="topRight"><a>登录</a></div>
+    <!-- <div id="topCenter"><a style="margin-left:-25px">商品列表</a></div> -->
+    <!-- <div id="topRight"><a>购物车</a></div> -->
   </div>
 
   <div v-for="(item, index) in data" key={{index}} class="lhalist">
