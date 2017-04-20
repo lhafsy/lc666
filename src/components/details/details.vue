@@ -2,13 +2,15 @@
 
 
 	<div>
-		<div class="lhatop" style="position:fixed">
-	      <div id="topImg"><router-link to="/" ><img src="../../../img/top.png" ></router-link></div>
-	      <div id="topLeft"><a><router-link to="/" >主页</router-link></a></div>
-	      <div id="topRight"><a><router-link to="/login" >登录</router-link></a></div>
-	    </div>
+		<div class="lhatop">
+			<div id="topImg"><router-link to="/" class="lgy_logincss"><img src="../../../img/top.png" ></router-link></div>
+			<div id="topLeft"><router-link to="/" class="lgy_logincss">主页</router-link></div>
+			<!-- <div id="topUser"><router-link to="cart" class="lgy_logincss"><img src="../../../img/22941.png"></router-link></div>
+			<div id="topShoppingCart"><router-link to="/login" class="lgy_logincss"><img src="../../../img/24768.png"></router-link></div> -->
+
+		</div>
 		<!-- 轮播图架构 -->
-		<div class="imgbox" style="padding-top:3.2rem">
+		<div class="imgbox">
 			<ul>
 				<li><a href="#"><img :src="'../../../img/'+data[0].img"></img></a></li>
 			</ul>
@@ -60,9 +62,9 @@
 
 
 
-		<div id="Fixed" style="background:#4fada7">
-			<div id="FixedL" @click="add"><p>加入购物车</p></div>
-			<div id="FixedR" @click="add"><p>立即购买</p></div>
+		<div id="Fixed">
+			<div id="FixedL" @click="lgy_updatephp"><img src="../../../img/24768.png" ><p>加入购物车</p></div>
+			<div id="FixedR"><img src="../../../img/ljzf_icon.png" ><p>立即购买</p></div>
 		</div>
 <br/>
 <br/>
@@ -116,9 +118,41 @@
 				}
 				event.target.setAttribute('lha_Nums', this.lha_Nums);
 			},
-			add: function(){
-				alert("加入购物车成功")
-			}
+			lgy_updatephp: function(){
+		    	var cartid = this.$route.params.id;
+		    	
+		    	// $.get('http://localhost/LC/lc666/cart.php',function(response){
+					// this.datapage = JSON.parse(response)
+			      // var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
+			      // var cartnum = cartnumget + cartnuminner;
+			      // console.log(cartnum)
+		    	// 	$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnuminner,cartprice:cartprice},function(result){
+			    //   // this.datapage.push(data)
+			    // }.bind(this))
+		    	// console.log(cartid)
+			  				// }.bind(this));
+			  	var path = 	location.search.slice(1);
+			
+			    var arr = path.split("=");
+			    var name= arr[1];	
+			    var cartid = this.$route.params.id;
+			    var obj = {};
+			    obj.num = this.lha_Nums;
+
+			   $.ajax({
+			   	url:"http://localhost/LC/lc666/src/php/addcart.php",
+			   	type:'POST',
+			   	data:{id:cartid,name:name,num:obj.num},
+			   	success:function(response){
+			   	
+			   		console.log(response)
+			   		// console.log(obj.num)
+			   		// for()
+			   	}
+
+			   })
+			   alert("加入购物车成功")				
+		    }
 		}
 	}
 </script>
