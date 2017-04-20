@@ -132,7 +132,7 @@
 					}
 					
 				}else{
-					this.allMoneynum = 0;
+					this.allPrice = 0;
 				}
 			},
 			lgy_deletephp: function(event){
