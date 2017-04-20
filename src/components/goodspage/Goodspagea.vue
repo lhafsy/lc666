@@ -7,7 +7,7 @@
 			<router-link to="/login" class="lgy_logincss">登录</router-link>
 		</div>
 		<div class="lgy_pagesDiva">
-			<img src="../../../img/goodspagea2.jpg" ref="cartimg"/>
+			<img :src="'../../../img/'+datapage.img" ref="cartimg"/>
 			<!-- <img src="../../img/goodspagea1.jpg" alt=""> -->
 			<h2 class="lgy_goodsTitle" ref="cartmsg"></h2>
 			<em>作者 ：时间飞逝</em>
@@ -118,23 +118,25 @@
 	export default {
 		name: 'goodspagea',
 		data: function(){
-			return {datapage:[],datagoodid:[],updatephpid:[],lgy_Nums:"1",id:"2",back:"22iii"}
+			return {datapage:[],datagoodid:[],updatephpid:[],lgy_Nums:"1",id:"2",back:"22iii",}
 		},
 		created: function(){
 				$.get('http://localhost/LC/lc666/reg.php',function(response){
-					this.datapage = JSON.parse(response);
+					var cartid = parseInt(this.$route.params.id) - 1;
+					this.datapage = JSON.parse(response)[cartid];
+					console.log(this.datapage)
 					// var responeseObj = JSON.parse(response);
-						console.log(this.datapage[0].cartid)
-			    	for(var i = 0; i < this.datapage.length; i++){
-						// // responeseObj
-						this.datagoodid.push(this.datapage[i].cartid)
-			    	}
-	        		// console.log(this.datagoodid)
+						// console.log(this.datapage[0].cartid)
+			   //  	for(var i = 0; i < this.datapage[cartid].length; i++){
+						// // // responeseObj
+						// this.datagoodid.push(this.datapage[i].cartid)
+			   //  	}
+	     //    		console.log(this.datagoodid)
 
 			    }.bind(this))
 		},
 		ready: function(){
-	        console.log(this.$route.params.id);
+	        // console.log(this.$route.params.id);
 	    },
 		methods:{
 			getAttribute: function(event){
@@ -191,11 +193,32 @@
 			      // var cartnumget = parseInt(JSON.parse(response)[0].cartnum);
 			      // var cartnum = cartnumget + cartnuminner;
 			      // console.log(cartnum)
-		    		$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnuminner,cartprice:cartprice},function(result){
-			      // this.datapage.push(data)
-			    }.bind(this))
+		    	// 	$.post("http://localhost/LC/lc666/updatecart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnuminner,cartprice:cartprice},function(result){
+			    //   // this.datapage.push(data)
+			    // }.bind(this))
 		    	// console.log(cartid)
 			  				// }.bind(this));
+			  	var path = 	location.search.slice(1);
+			
+			    var arr = path.split("=");
+			    var name= arr[1];	
+			    var cartid = this.$route.params.id;
+			    var obj = {};
+			    obj.num = this.lgy_Nums;
+
+			   $.ajax({
+			   	url:"http://localhost/LC/lc666/src/php/addcart.php",
+			   	type:'POST',
+			   	data:{id:cartid,name:name,num:obj.num},
+			   	success:function(response){
+			   	
+			   		console.log(response)
+			   		console.log(cartid)
+			   		// for()
+			   	}
+
+			   })
+			   alert("加入购物车成功")				
 		    },
 		    getUid:function(_callback){
 		    	var url1 = this.$route.params.id

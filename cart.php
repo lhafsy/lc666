@@ -14,7 +14,9 @@
 
     $conn->query("set names utf8"); //设置编码为utf8
 
-    $sql = "select * from cart";
+   
+    // $sql = "select * from carts inner join goods on carts.gid=goods.index_id ";
+    // select * from 主表 inner join 2表 on 主表.zwid=2表.id inner join 3表 on 主表.XX=3表.id where 主表.id=$id
     $result = $conn->query($sql);//执行数据库命令返回数据
     if($result->num_rows > 0){//$result->num_rows == 返回的数据
         $arr = array();

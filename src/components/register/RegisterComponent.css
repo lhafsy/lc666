@@ -120,7 +120,7 @@ body{font-family: '宋体';color: #666;}
 	text-align: center;
 	font-size: 1.2rem;
 	font-weight: bold;
-	background: #64c1e6;
+	background: #4fada7;
 	position: absolute;
 	border-radius:0.5rem ;
 	color: #fff;
@@ -132,7 +132,7 @@ body{font-family: '宋体';color: #666;}
 	display:inline-block;
 	color:#fff;
 	width: 100%;
-	background-color:#1f9dd0;
+	background-color:#4fada7;
 	border-radius: 4px;
     height: 3.0625rem;
     line-height: 3.0625rem;

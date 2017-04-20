@@ -1,40 +1,40 @@
 <template>
 	<div>
-		<div class="lgy_commonTop" style="z-index:99"><a href="#/" class="lgy_logincss router-link-active">主页</a> <a href="#/register" class="lgy_logincss">注册</a> <a href="#/login" class="lgy_logincss">登录</a></div>
+		<div class="lgy_commonTop" style="z-index:99"><a href="#/" class="lgy_logincss router-link-active">主页</a> <!-- <a href="#/register" class="lgy_logincss">注册</a> <a href="#/login" class="lgy_logincss">登录</a> --></div>
 		<div class="lgy_cartOutshow" style="margin-top:3rem;margin-bottom:6.5rem">
 			<div class="lgy_cartOut" v-for="(key, index) in cartData">
 				<div class="lgy_cartOuta">
 					<input type="checkbox" style="margin-left:1rem" @click="eleChecked" v-bind:elecheckid="key.cartid" v-bind:index="index">
-					<span style="display:none">{{key.cartnum}}</span>
-					<span style="display:none">{{key.cartprice}}</span>
+					<!-- <span style="display:none">{{key.num}}</span>
+					<span style="display:none">{{key.cartprice}}</span> -->
 				</div>
 				<div class="lgy_cartOuta">
-					<img :src="'../../../img/'+key.cartimg" alt="" style="width:100%;height:60%;">
+					<img :src="'../../../img/'+key.goodsImg" alt="" style="width:100%;height:60%;">
 				</div>
 				<div class="lgy_cartOuta">
-				<!-- <input type="text" ref="lgy_cartid" :value="key.cartid" style="display:none"/> -->
+					<!-- <input type="text" ref="lgy_cartid" :value="key.cartid" style="display:none"/> -->
 
 
-				<!-- <span ref="lgy_cartid" style="display:none" v-bind:cartid="key.cartid"></span> -->
+					<!-- <span ref="lgy_cartid" style="display:none" v-bind:cartid="key.cartid"></span> -->
 
 
-					<p>雪平锅</p>
-					<p>数量：<span>{{key.cartnum}}</span></p>
-					<p>$ <em v-bind:eleprice="key.cartprice">{{key.cartprice}}</em>元</p>
+					<p>{{key.goodsName}}</p>
+					<!-- <p>数量：<span>{{key.num}}</span></p> -->
+					<p>$ <em v-bind:eleprice="key.cartprice">{{key.goodsPrice}}</em>元</p>
 					<div class="lgy_shopNum clear">
 						数量：
-						<input class="lgy_shopDown" type="button" value="-" @click="cartnumDown" v-bind:cartDownnum="key.cartnum" v-bind:cartDownid="key.cartid">
-						<span class="lgy_Num" ref="cartnum">{{key.cartnum}}</span>
-						<input class="lgy_shopUp" v-bind:cartUpnum="key.cartnum" type="button" value="+" v-bind:cartUpid="key.cartid" @click="cartnumUp">
+						<input class="lgy_shopDown" type="button" value="-" @click="cartnumDown" v-bind:cartDownnum="key.cartnum" v-bind:gid="key.goodsId">
+						<span class="lgy_Num" :id=index ref="cartnum"></span>
+						<input class="lgy_shopUp" v-bind:cartUpnum="key.num" type="button" value="+" v-bind:gid="key.goodsId" @click="cartnumUp">
 					</div>
 				</div>
 				<div class="lgy_cartOuta" @click="lgy_deletephp">
-					<img src="../../../img/delbtn.png" alt="" v-bind:cartid="key.cartid">
+					<img src="../../../img/delbtn.png" alt="" v-bind:cartid="key.cartid" v-bind:kid="key.goodsId">
 				</div>
 			</div>
 			<div class="allPricebox">
 				<input type="checkbox" class="allPricecheck" @click="getChecked">
-				<span>总价格：<em class="allPrice">{{allMoneynum}}</em></span>
+				<span>总价格：<em class="allPrice" v-model.number="allPrice">{{allPrice}}</em></span>
 				<input type="button" class="goBuy" value="结算">
 			</div>
 		</div>
@@ -59,43 +59,48 @@
 	export default {
 		name: 'cart',
 		data: function(){
-			return {cartData:[],allMoney:[],allMoneynum:"0",elecartnum:"1"}
+			return {cartData:[],allMoney:[],allMoneynum:"0",elecartnum:"1",arr:[],allPrice:0}
 		},
 		created: function(){
-				$.get('http://localhost/LC/lc666/cart.php',function(response){
-					if(response.length > 12){
-						this.cartData = JSON.parse(response);
-					}
-			    }.bind(this))
+				var self=this
+			    $.get("http://localhost/LC/lc666/src/php/cart.php",function(response){
+			    	self.cartData = JSON.parse(response);
+			    	// console.log(response )
+			    	// console.log(self.cartData )
+			   		$.get("http://localhost/LC/lc666/src/php/cartsnum.php",function(response){
+				    	this.arr = JSON.parse(response);
+				    	// console.log(thi/\s.arr )
+				    	for(var i = 0; i < this.arr.length;i++){
+							var str = parseInt(this.arr[i].num);
+							// console.log( this.arr[i].num)
+							// $('.lgy_Num').append('<span>'+str+'</span>')
+							$('#'+i).append(str);
+							// console.log($('#'+i))
+
+				    	}
+				    }.bind(this))
+
+			    })
+				// $.get('http://localhost/LC/lc666/cart.php',function(response){
+				// 	if(response.length > 12){
+				// 		this.cartData = JSON.parse(response);
+				// 	}
+			 //    }.bind(this))
 		},
 		methods:{
-			cartnumUp: function(){
-
-			},
 			eleChecked: function(e) {
-				var num = e.path[2].children[2].children[2].children[0].innerText
-				var price = e.path[2].children[2].children[1].children[0].innerText
+				// console.log(e.path[2].children[2].children[2].children[2])
+				var num = parseInt(e.path[2].children[2].children[2].children[1].innerText);
+				var price = parseInt(e.path[2].children[2].children[1].children[0].innerText);
+				// console.log(typeof num)
 				if(e.currentTarget.checked){
-					var numa =  num;
+					console.log(e.currentTarget.checked)
+					this.allPrice +=  num * price;
+					console.log(typeof this.allPrice)
+				}else{
+					this.allPrice -=  num * price;
 				}
-				console.log(e.path[2].children[2].children[2].children[0].innerText)
-				console.log(e.path[2].children[2].children[1].children[0].innerText)
-				console.log(e.currentTarget.checked)
-
-				// var num = $(':checked').parent().children('span').eq(0).html();
-				// var price = $(':checked').parent().children('span').eq(1).html();
-				// var box = num * price;
-				// console.log(typeof box)
-				// this.allMoneynum = parseInt(this.allMoneynum) + box;
-				// num = null;
-				// price = null;
-				// box = null;
-				// console.log($(':checked').parent().children('span').eq(0).html())
-				// console.log($(':checked').parent().children('span').eq(1).html())
-				// if()
-				// for(var i=0;i<$(':checked').length;i++){
-				// 	$(':checked')[i].
-				// }
+				// console.log(price)
 				var cartid = event.target.getAttribute('checkid');
 				var $checkbox = $('.lgy_cartOuta :checkbox');
 				// console.log($checkbox)
@@ -103,27 +108,14 @@
 				// console.log($checkbox.eq(1).prop('checked'))
 				var cleng = $checkbox.length;
 				var lenged = $('.lgy_cartOut :checked').length;
-
-				// if($checkbox.prop('checked')==true){
-				// 	$.get('http://localhost/LC/lc666/cart.php',function(response){
-				// 		if(response.length > 12){
-				// 			this.cartData = JSON.parse(response);
-				// 			var sum = 0;
-				// 			for(var i = 0;i < this.cartData.length; i++){
-				// 				// this.allMoney.push(this.cartData[i].cartprice)
-				// 				var cartprice = parseInt(this.cartData[i].cartprice)
-				// 				var cartnum = parseInt(this.cartData[i].cartnum)
-				// 				sum += (cartnum * cartprice);
-				// 			}
-				// 			this.allMoneynum = sum;
-				// 		}
-				//     }.bind(this))
-				// }else{
-				// 	this.allMoneynum = 0;
-				// }
 			},
-			getChecked: function() {
+			getChecked: function(e) {
 				var $checkbox = $('.lgy_cartOut :checkbox');
+				console.log($checkbox)
+				console.log($checkbox[0].parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerText)
+				// for(var i = 0;i<$checkbox.length;i++){
+
+				// }
 				var cleng = $checkbox.length;
 				var lenged = $('.lgy_cartOut :checked').length;
 				if(lenged == cleng){
@@ -132,40 +124,50 @@
 					$checkbox.prop('checked',true);
 				}
 				if($checkbox.prop('checked')==true){
-					$.get('http://localhost/LC/lc666/cart.php',function(response){
-						if(response.length > 12){
-							this.cartData = JSON.parse(response);
-							var sum = 0;
-							for(var i = 0;i < this.cartData.length; i++){
-								// this.allMoney.push(this.cartData[i].cartprice)
-								var cartprice = parseInt(this.cartData[i].cartprice)
-								var cartnum = parseInt(this.cartData[i].cartnum)
-								sum += (cartnum * cartprice);
-							}
-							this.allMoneynum = sum;
-						}
-				    }.bind(this))
+					for(var i = 0;i< $checkbox.length;i++){
+						var price = parseInt($checkbox[i].parentElement.nextElementSibling.nextElementSibling.children[1].children[0].innerText);
+						var num = parseInt($checkbox[i].parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerText);
+						this.allPrice +=  num * price;
+
+					}
+					
 				}else{
 					this.allMoneynum = 0;
 				}
 			},
 			lgy_deletephp: function(event){
-				var cartid = event.target.getAttribute('cartid');
-		    	$.post("http://localhost/LC/lc666/deletecart.php",{cartid:cartid},function(result){
-		    		$.get('http://localhost/LC/lc666/cart.php',function(response){
-						if(response){
-							this.cartData = JSON.parse(response);
-							var sum = 0;
-						for(var i = 0;i < this.cartData.length; i++){
-							// this.allMoney.push(this.cartData[i].cartprice)
-							var cartpricenum = parseInt(this.cartData[i].cartprice)
-							sum += cartpricenum;
-						}
-						this.allMoneynum = sum;
-						}
-			    }.bind(this))
-			  				}.bind(this));
-		    	// console.log(666)
+		    	var cartid = event.target.getAttribute('kid');
+				console.log(cartid)
+				      var self =this
+				$.ajax({
+					url:"http://localhost/LC/lc666/src/php/delcart.php",
+                    type:'post',
+                    data:{id:cartid},
+                     async:false, 
+                    success:function(response){
+	                    $.get("http://localhost/LC/lc666/src/php/cart.php",function(response){
+					    	self.cartData = JSON.parse(response);
+
+					    	$.get("http://localhost/LC/lc666/src/php/cartsnum.php",function(response){
+						    	this.arr = JSON.parse(response);
+						    	console.log(this.arr )
+						    	for(var i = 0; i < this.arr.length;i++){
+									var str = parseInt(this.arr[i].num);
+									console.log( this.arr[i].num)
+									// $('.lgy_Num').append('<span>'+str+'</span>')
+									$('#'+i).html(str);
+									// console.log($('#'+i))
+
+						    	}
+						    }.bind(this))
+					    
+					    
+			   
+			           })
+
+                    }
+
+				})
 		    },
 		    lgy_buyphp: function(){
 		    	var cartid = this.$route.params.id;
@@ -177,53 +179,66 @@
 		    	$.post("http://localhost/LC/lc666/addcart.php",{cartid:cartid,cartmsg:cartmsg,cartnum:cartnum,cartprice:cartprice},function(result){
 			  				}.bind(this));
 		    },
-		    cartnumDown: function(){
-		    	// var cartid = this.$route.params.id;
-		    	// var cartmsg = this.$refs.cartmsg.innerText;
-		    	var cartid = parseInt(event.target.getAttribute('cartDownid'));
-		    	var cartnumbefore = parseInt(event.target.getAttribute('cartDownnum'));
-		    	if(cartnumbefore != "1"){
-		    		var cartnum = cartnumbefore - 1;
-		    		$.post("http://localhost/LC/lc666/updatecartbuy.php",{cartid:cartid,cartnum:cartnum},function(result){
-		    			$.get('http://localhost/LC/lc666/cart.php',function(response){
-		    				if(response){
-									this.cartData = JSON.parse(response);
-								// 	var sum = 0;
-								// for(var i = 0;i < this.cartData.length; i++){
-								// // this.allMoney.push(this.cartData[i].cartprice)
-								// 	var cartprice = parseInt(this.cartData[i].cartprice)
-								// 	var cartnum = parseInt(this.cartData[i].cartnum)
-								// 	sum += (cartnum * cartprice);
-								// }
-								// this.allMoneynum = sum;
-							}
-						}.bind(this));
+		    cartnumDown: function(e){
+		    	var nums = parseInt(event.target.nextElementSibling.innerHTML);
+		    	var cartid = event.target.getAttribute('gid');
+		    	  nums -= 1;
+		    	// console.log(nums)
+		    	  // console.log(cartid)
+		    	 $.ajax({
+				   	url:"http://localhost/LC/lc666/src/php/downcart.php",
+				   	type:'POST',
+				   	data:{id:cartid,numMin:nums},
+				   	success:function(response){
+				   		$.get("http://localhost/LC/lc666/src/php/cartsnum.php",function(response){
+						    	this.arr = JSON.parse(response);
+						    	// console.log(this.arr )
+						    	for(var i = 0; i < this.arr.length;i++){
+									var str = parseInt(this.arr[i].num);
+									// console.log( this.arr[i].num)
+									// $('.lgy_Num').append('<span>'+str+'</span>')
+									$('#'+i).html(str);
+									// console.log($('#'+i))
 
-		    		}.bind(this));
-		    	}
+						    	}
+						    }.bind(this))
+				   	
+				   		// console.log(response)
+				   		// console.log(cartid)
+				   		// for()
+				   	}
+
+			   })
 		    },
-		    cartnumUp: function(){
-		    	// var cartid = this.$route.params.id;
-		    	// var cartmsg = this.$refs.cartmsg.innerText;
-		    	var cartid = parseInt(event.target.getAttribute('cartUpid'));
-		    	var cartnumbefore = parseInt(event.target.getAttribute('cartUpnum'));
-	    		var cartnum = cartnumbefore + 1;
-	    		$.post("http://localhost/LC/lc666/updatecartbuy.php",{cartid:cartid,cartnum:cartnum},function(result){
-	    			$.get('http://localhost/LC/lc666/cart.php',function(response){
-	    				if(response){
-								this.cartData = JSON.parse(response);
-							// 	var sum = 0;
-							// for(var i = 0;i < this.cartData.length; i++){
-							// // this.allMoney.push(this.cartData[i].cartprice)
-							// 	var cartprice = parseInt(this.cartData[i].cartprice)
-							// 	var cartnum = parseInt(this.cartData[i].cartnum)
-							// 	sum += (cartnum * cartprice);
-							// }
-							// this.allMoneynum = sum;
-						}
-					}.bind(this));
+		    cartnumUp: function(e){
+		    	var nums = parseInt(event.target.previousElementSibling.innerHTML);
+		    	var cartid = event.target.getAttribute('gid');
+		    	  nums += 1;
+		    	  // console.log(cartid)
+		    	 $.ajax({
+				   	url:"http://localhost/LC/lc666/src/php/addcart.php",
+				   	type:'POST',
+				   	data:{id:cartid,num:nums},
+				   	success:function(response){
+				   		$.get("http://localhost/LC/lc666/src/php/cartsnum.php",function(response){
+						    	this.arr = JSON.parse(response);
+						    	// console.log(this.arr )
+						    	for(var i = 0; i < this.arr.length;i++){
+									var str = parseInt(this.arr[i].num);
+									// console.log( this.arr[i].num)
+									// $('.lgy_Num').append('<span>'+str+'</span>')
+									$('#'+i).html(str);
+									// console.log($('#'+i))
 
-	    		}.bind(this));
+						    	}
+						    }.bind(this))
+				   	
+				   		// console.log(response)
+				   		// console.log(cartid)
+				   		// for()
+				   	}
+
+			   })
 		    }
 		}
 	}

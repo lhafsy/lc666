@@ -2,15 +2,13 @@
 
 
 	<div>
-		<div class="lhatop">
-			<div id="topImg"><img src="../../../img/top.png" ></div>
-			<div id="topLeft">主页</div>
-			<div id="topUser"><img src="../../../img/22941.png"></div>
-			<div id="topShoppingCart"><img src="../../../img/24768.png"></div>
-
-		</div>
+		<div class="lhatop" style="position:fixed">
+	      <div id="topImg"><router-link to="/" ><img src="../../../img/top.png" ></router-link></div>
+	      <div id="topLeft"><a><router-link to="/" >主页</router-link></a></div>
+	      <div id="topRight"><a><router-link to="/login" >登录</router-link></a></div>
+	    </div>
 		<!-- 轮播图架构 -->
-		<div class="imgbox">
+		<div class="imgbox" style="padding-top:3.2rem">
 			<ul>
 				<li><a href="#"><img :src="'../../../img/'+data[0].img"></img></a></li>
 			</ul>
@@ -62,9 +60,9 @@
 
 
 
-		<div id="Fixed">
-			<div id="FixedL"><img src="../../../img/24768.png" ><p>加入购物车</p></div>
-			<div id="FixedR"><img src="../../../img/ljzf_icon.png" ><p>立即购买</p></div>
+		<div id="Fixed" style="background:#4fada7">
+			<div id="FixedL" @click="add"><p>加入购物车</p></div>
+			<div id="FixedR" @click="add"><p>立即购买</p></div>
 		</div>
 <br/>
 <br/>
@@ -106,7 +104,8 @@
 						// console.log(	self.data[0].goodspage.split(","))
 					}
 				})
-		},methods:{
+		},
+		methods:{
 			getAttribute: function(event){
 				var lha_Nums = parseInt(event.target.getAttribute('lha_Nums'));
 				if(lha_Nums == 1){
@@ -116,6 +115,9 @@
 					this.lha_Nums = lha_Nums - 1;
 				}
 				event.target.setAttribute('lha_Nums', this.lha_Nums);
+			},
+			add: function(){
+				alert("加入购物车成功")
 			}
 		}
 	}

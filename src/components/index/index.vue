@@ -5,7 +5,7 @@
 			<button id="Tl_btn_search" style="font-size:12px;width:14%;height:1.8rem;">搜索</button>
 		</div>
 		<div id="Tl_main_content">
-			<router-link :to="'/page/' + data[0].index_id" class="Tl_nav">
+			<router-link :to="'/details/' + data[0].index_id" class="Tl_nav">
 				<div></div>
 			</router-link>
 			<router-link :to="'/page/' + data[1].index_id" class="Tl_nav2">
@@ -15,7 +15,7 @@
 				<div></div>
 			</router-link>
 			<div style="width:100%;height:20rem;">
-				<router-link :to="'/page/' + data[3].index_id">
+				<router-link :to="'/details/' + data[3].index_id">
 					<div id="Tl_Combination_top"></div>
 				</router-link>
 				<router-link :to="'/page/' + data[4].index_id">
@@ -23,14 +23,14 @@
 				</router-link>
 			</div>
 			<div class="clear">
-				<router-link :to="'/page/' + data[5].index_id">
+				<router-link :to="'/details/' + data[5].index_id">
 					<div id="Tl_Combination_bottom"></div>
 				</router-link>
 				<router-link :to="'/page/' + data[6].index_id">
 					<div id="Tl_Combination_Bottom"></div>
 				</router-link>
 			</div>
-			<router-link :to="'/page/' + data[7].index_id" class="Tl_nav4">
+			<router-link :to="'/details/' + data[7].index_id" class="Tl_nav4">
 				<div></div>
 			</router-link>
 			<div style="width:100%;height:15rem;" class="clear">
@@ -39,11 +39,11 @@
 						<div id="Tl_Combination_left"></div>
 					</router-link>
 				</router-link>
-				<router-link :to="'/page/' + data[10].index_id">
+				<router-link :to="'/details/' + data[10].index_id">
 					<div id="Tl_Combination_right"></div>
 				</router-link>
 			</div>
-			<router-link :to="'/page/' + data[11].index_id" class="Tl_nav5">
+			<router-link :to="'/details/' + data[11].index_id" class="Tl_nav5">
 				<div></div>
 			</router-link>
 			<div style="margin:2% 0;text-align:center;">
