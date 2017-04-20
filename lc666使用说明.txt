@@ -1,0 +1,5 @@
+0.修改php链接数据库的password
+1.创建shijianfeishi数据库
+2.导入sql里面的sql表
+3.在根目录运行命令npm run dev
+4.在网页输入localhost:8080
