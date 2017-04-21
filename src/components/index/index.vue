@@ -8,6 +8,7 @@
 			<router-link to="/page/1" class="Tl_nav">
 				<div></div>
 			</router-link>
+<<<<<<< HEAD
 			<router-link to="/page/3" class="Tl_nav2">
 				<div></div>
 			</router-link>
@@ -19,10 +20,24 @@
 					<div id="Tl_Combination_top"></div>
 				</router-link>
 				<router-link to="/page/8">
+=======
+			<router-link to="/page/10" class="Tl_nav2">
+				<div></div>
+			</router-link>
+			<router-link to="/page/12" class="Tl_nav3">
+				<div></div>
+			</router-link>
+			<div style="width:100%;height:20rem;">
+				<router-link to="/page/15">
+					<div id="Tl_Combination_top"></div>
+				</router-link>
+				<router-link to="/page/5">
+>>>>>>> db4e68c5cafba27291ddf95f7d8be2c8b607a138
 					<div id="Tl_Combination_Top"></div>
 				</router-link>
 			</div>
 			<div class="clear">
+<<<<<<< HEAD
 				<router-link to="/page/19">
 					<div id="Tl_Combination_bottom"></div>
 				</router-link>
@@ -40,6 +55,25 @@
 					</router-link>
 				</router-link>
 				<router-link to="/page/30">
+=======
+				<router-link to="/page/6">
+					<div id="Tl_Combination_bottom"></div>
+				</router-link>
+				<router-link to="/page/30">
+					<div id="Tl_Combination_Bottom"></div>
+				</router-link>
+			</div>
+			<router-link to="/page/30" class="Tl_nav4">
+				<div></div>
+			</router-link>
+			<div style="width:100%;height:15rem;" class="clear">
+				<router-link to="/page/31">
+					<router-link to="/page/51">
+						<div id="Tl_Combination_left"></div>
+					</router-link>
+				</router-link>
+				<router-link to="/page/61">
+>>>>>>> db4e68c5cafba27291ddf95f7d8be2c8b607a138
 					<div id="Tl_Combination_right"></div>
 				</router-link>
 			</div>

@@ -1,5 +1,6 @@
-0.修改php链接数据库的password
 1.创建shijianfeishi数据库
-2.导入sql里面的sql表
-3.在根目录运行命令npm run dev
-4.在网页输入localhost:8080
+2.修改根目录下的mysql666.php的数据库名称和密码
+3.导入sql里面的sql表
+4.在命令行运行命令 npm install(如果报错，是sass要翻墙下载，可以打开飞秋，接受我们下载好的文件)
+5.在根目录运行命令npm run dev
+6.在网页输入localhost:8080
