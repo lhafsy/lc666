@@ -182,6 +182,10 @@
 		    cartnumDown: function(e){
 		    	var nums = parseInt(event.target.nextElementSibling.innerHTML);
 		    	var cartid = event.target.getAttribute('gid');
+		    	if(nums == 1){
+
+		    	}else{
+
 		    	  nums -= 1;
 		    	// console.log(nums)
 		    	  // console.log(cartid)
@@ -202,24 +206,24 @@
 
 						    	}
 						    }.bind(this))
-				   	
-				   		// console.log(response)
-				   		// console.log(cartid)
-				   		// for()
-				   	}
+					   	}
 
-			   })
+				   })
+		    	}
+				   	
+				   		
 		    },
 		    cartnumUp: function(e){
 		    	var nums = parseInt(event.target.previousElementSibling.innerHTML);
 		    	var cartid = event.target.getAttribute('gid');
 		    	  nums += 1;
-		    	  // console.log(cartid)
+		    	  // console.log(nums)
 		    	 $.ajax({
 				   	url:"http://localhost/LC/lc666/src/php/addcart.php",
 				   	type:'POST',
 				   	data:{id:cartid,num:nums},
 				   	success:function(response){
+				    	 console.log(response)
 				   		$.get("http://localhost/LC/lc666/src/php/cartsnum.php",function(response){
 						    	this.arr = JSON.parse(response);
 						    	// console.log(this.arr )
