@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : 1611-666
 Source Server Version : 50520
 Source Host           : localhost:3306
 Source Database       : shijianfeishi
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2017-04-19 20:08:51
+Date: 2017-04-21 08:56:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,10 +25,12 @@ CREATE TABLE `carts` (
   `uid` varchar(255) DEFAULT NULL,
   `num` int(255) DEFAULT NULL,
   PRIMARY KEY (`cartid`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of carts
 -- ----------------------------
-INSERT INTO `carts` VALUES ('43', '6', '', '5');
-INSERT INTO `carts` VALUES ('44', '1', '', '2');
+INSERT INTO `carts` VALUES ('86', '48', '', '7');
+INSERT INTO `carts` VALUES ('87', '22', '', '7');
+INSERT INTO `carts` VALUES ('88', '1', '', '4');
+INSERT INTO `carts` VALUES ('89', '4', '', '11');

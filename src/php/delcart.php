@@ -8,7 +8,8 @@ header("Access-Control-Allow-Origin: http://localhost:8080");
         public $goodsnum;
     }
     $id  = $_POST['id'];
-    $conn = new mysqli("127.0.0.1", "root", "", "shijianfeishi") or die("connect error");
+    // $conn = new mysqli("127.0.0.1", "root", "", "shijianfeishi") or die("connect error");
+    require '../../mysql666.php';
     $conn->query("set names utf8");
     
 

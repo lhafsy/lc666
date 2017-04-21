@@ -246,7 +246,7 @@
 <style lang="scss">
 .lgy_cartOutshow{
 	width: 100%;
-	height: 40.2rem;
+	height: 45.3rem;
 	overflow: auto;
 	border: 1px solid #ccc;
 	position:relative;

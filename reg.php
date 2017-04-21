@@ -12,8 +12,8 @@
     }
 
     //连接数据库
-    $conn = new mysqli("127.0.0.1","root","","shijianfeishi") or die("连接失败!");
-
+    // $conn = new mysqli("127.0.0.1","root","","shijianfeishi") or die("连接失败!");
+        require 'mysql666.php';
     $conn->query("set names utf8"); //设置编码为utf8
 
     $sql = "select * from goods";

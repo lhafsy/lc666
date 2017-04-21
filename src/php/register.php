@@ -10,7 +10,8 @@ header("Access-Control-Allow-Origin: http://localhost:8080");
 
        
         //将要注册的用户信息插入到数据库中
-        $conn = new mysqli("127.0.0.1", "root","","shijianfeishi") or die("连接失败!");
+        // $conn = new mysqli("127.0.0.1", "root","","shijianfeishi") or die("连接失败!");
+        require '../../mysql666.php';
 
         $isExist = false; //是否已经存在相同用户名
         //查询数据, 检测是否已经存在该用户

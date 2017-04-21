@@ -9,7 +9,8 @@
         $num = $_POST["num"];
        
         //将要注册的用户信息插入到数据库中
-        $conn = new mysqli("127.0.0.1", "root","","shijianfeishi") or die("连接失败!");
+        // $conn = new mysqli("127.0.0.1", "root","","shijianfeishi") or die("连接失败!");
+        require '../mysql666.php';
         // $conn->query("set names utf8"); //设置编码为utf8
 
         $isExist = false; //是否已经存在相同用户名
