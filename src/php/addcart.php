@@ -2,7 +2,7 @@
 
 
     header("Access-Control-Allow-Origin: http://localhost:8080");
-     // if(!empty($_POST['cartid'])&&!empty($_POST['name'])){
+     if(!empty($_POST['cartid'])){
         //获取客户端发送过来的参数
         $cartid = $_POST["id"]; //从客户端获取的用户名
         $name = $_POST["name"]; //从客户端获取的密码
@@ -11,12 +11,10 @@
 
        
         //将要注册的用户信息插入到数据库中
-<<<<<<< HEAD
+
         // $conn = new mysqli("127.0.0.1", "root","","shijianfeishi") or die("连接失败!");
         require '../../mysql666.php';
-=======
-       require 'mysql.php';
->>>>>>> db4e68c5cafba27291ddf95f7d8be2c8b607a138
+
         // $conn->query("set names utf8"); //设置编码为utf8
 
         $isExist = false; //是否已经存在相同用户名
@@ -35,7 +33,7 @@
                   
                 };
                 if($row["num"] == $numAdd ){
-                  
+                   echo  111;
                    $sql4 = "UPDATE carts SET num=num+1 where  gid = '".$cartid."'" ;
                    $conn->query( $sql4);
 
@@ -67,7 +65,7 @@
         }
 
         $conn->close(); //关闭数据库
-    // }
+    }
 
   
 
