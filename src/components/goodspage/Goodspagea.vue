@@ -215,10 +215,10 @@
 			   		console.log(response)
 			   		// console.log(obj.num)
 			   		// for()
+				   alert("加入购物车成功")				
 			   	}
 
 			   })
-			   alert("加入购物车成功")				
 		    },
 		    getUid:function(_callback){
 		    	var url1 = this.$route.params.id
